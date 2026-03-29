@@ -4,9 +4,11 @@
 
 # Remodex Android
 
-Control Codex on your device from Android. An Android client for [Remodex](https://github.com/Emanuele-web04/remodex), with compatible bridge and relay updates for a local-first, self-hostable setup.
+> Alpha, personal-use, lightly maintained.
 
-Derived from the upstream Remodex work by Emanuele Di Pietro. This public repo focuses on the Android client plus the bridge and relay pieces needed to use it from source. It does not include the upstream iOS source tree, but it is intended to stay compatible with the upstream iOS app and protocol where that shared bridge/relay behavior is preserved.
+Control Codex on your device from Android. An unofficial Android client for [Remodex](https://github.com/Emanuele-web04/remodex), with compatible bridge and relay updates for a local-first, self-hostable setup.
+
+Derived from the upstream Remodex work by Emanuele Di Pietro. This public repo focuses on the Android client plus the bridge and relay pieces needed to use it from source. It does not include the upstream iOS source tree, and it is not the official Android port of Remodex. It is intended to stay compatible with the upstream iOS app and protocol where that shared bridge/relay behavior is preserved.
 
 <p align="center">
   <img src="assets/remodex-android-onboard.jpg" alt="Onboarding" width="320">
@@ -40,6 +42,20 @@ If this repo is useful to you, the safest assumption is:
 - treat it as an early alpha
 - expect best-effort maintenance only
 - feel free to fork it and take it in your own direction
+
+## Tested On / Not Tested On
+
+Tested on:
+
+- the author's own Android devices
+- host-side Codex CLI setups on Raspberry Pi and macOS
+- local LAN and private-network usage
+
+Not tested on:
+
+- a broad Android device matrix
+- polished multi-user or production-style deployments
+- public internet relay setups validated end to end by the author
 
 ## What This Repo Includes
 
