@@ -14,14 +14,11 @@ This project is derived from the upstream Remodex work by Emanuele Di Pietro. Th
 
 <table align="center">
   <tr>
-    <td width="50%"><img src="assets/remodex-android-chat.jpg" alt="Chat view" width="260"></td>
-    <td width="50%"><img src="assets/remodex-android-settings.jpg" alt="Settings" width="260"></td>
+    <td align="center"><img src="assets/remodex-android-chat.jpg" alt="Chat view" width="210"></td>
+    <td align="center"><img src="assets/remodex-android-settings.jpg" alt="Settings" width="210"></td>
+    <td align="center"><img src="assets/remodex-android-fold.jpg" alt="Foldable layout" width="210"></td>
   </tr>
 </table>
-
-<p align="center">
-  <img src="assets/remodex-android-fold.jpg" alt="Foldable layout" width="560">
-</p>
 
 ## Current Status
 
