@@ -4,13 +4,15 @@ This folder contains the public relay and push-service code used by Remodex pair
 
 The point of keeping this code in the repo is transparency: anyone forking Remodex can inspect the transport boundary, verify the encrypted-session flow, and run a compatible relay of their own. What should stay private is the actual deployed endpoint and any production credentials.
 
+In this Android-focused fork, the relay and bridge are kept in-tree because the Android client depends on them for a usable self-hostable setup.
+
 ## What It Does
 
 - accepts WebSocket connections at `/relay/{sessionId}`
-- pairs one Mac host with one live iPhone client for a session
+- pairs one Mac host with one live phone client for a session
 - keeps an in-memory index of the current live session for each trusted Mac
-- resolves the current live session for a previously trusted iPhone through an authenticated HTTP lookup
-- forwards secure control messages and encrypted payloads between Mac and iPhone
+- resolves the current live session for a previously trusted phone through an authenticated HTTP lookup
+- forwards secure control messages and encrypted payloads between Mac and phone
 - exposes optional HTTP endpoints for push registration and run-completion alerts only when push is enabled explicitly
 - logs only connection metadata and payload sizes, not plaintext prompts or responses
 
@@ -27,9 +29,9 @@ Codex, git, and local file operations still run on the user's Mac.
 
 Remodex uses the relay as a transport hop, not as a trusted application server.
 
-- The pairing QR gives the iPhone the bridge identity public key plus short-lived session details.
-- After the first successful QR bootstrap, the relay can help the iPhone find the Mac's current live session again through a signed trusted-session resolve request.
-- The iPhone and bridge perform a signed handshake, derive shared AES-256-GCM keys with X25519 + HKDF-SHA256, and then encrypt application payloads end to end.
+- The pairing QR gives the phone the bridge identity public key plus short-lived session details.
+- After the first successful QR bootstrap, the relay can help the phone find the Mac's current live session again through a signed trusted-session resolve request.
+- The phone and bridge perform a signed handshake, derive shared AES-256-GCM keys with X25519 + HKDF-SHA256, and then encrypt application payloads end to end.
 - The relay can still observe connection metadata and the plaintext secure control messages needed to establish the encrypted session.
 - The relay does not receive plaintext Remodex application payloads after the secure session is active.
 
@@ -43,45 +45,45 @@ flowchart TD
     D --> E[Relay creates in-memory session room]
     D --> E2[Relay records macDeviceId plus trusted phone metadata for live-session resolve]
 
-    C --> F[iPhone scans QR]
-    F --> G[iPhone opens WebSocket to /relay/{sessionId}<br/>x-role: iphone]
+    C --> F[Phone scans QR]
+    F --> G[Phone opens WebSocket to /relay/{sessionId}<br/>x-role: iphone]
     G --> H{Mac session live?}
-    H -- No --> I[Relay closes iPhone socket<br/>4002 session unavailable]
-    H -- Yes --> J[Relay binds iPhone to that session]
+    H -- No --> I[Relay closes phone socket<br/>4002 session unavailable]
+    H -- Yes --> J[Relay binds phone to that session]
 
     E --> K[Relay forwards secure control messages]
     J --> K
     K --> L[Mac and iPhone exchange signed handshake]
     L --> M[Both sides derive AES-256-GCM session keys]
 
-    M --> N[iPhone sends encrypted app messages]
+    M --> N[Phone sends encrypted app messages]
     M --> O[Mac sends encrypted Codex and bridge responses]
     N --> P[Relay forwards ciphertext to Mac]
-    O --> Q[Relay forwards ciphertext to iPhone]
+    O --> Q[Relay forwards ciphertext to phone]
 
     P --> R[Bridge decrypts and routes locally]
     R --> S[Codex app-server / git / workspace handlers]
     S --> O
 
-    Q --> T[iPhone decrypts and renders timeline]
+    Q --> T[Phone decrypts and renders timeline]
 
     D --> U[Relay stores per-session notification secret]
     U --> V[Push registration/completion endpoints only work while live Mac session exists]
 
     D --> W{Mac reconnects?}
     W -- Yes --> X[Relay replaces older Mac socket<br/>4001 to old connection]
-    G --> Y{iPhone reconnects?}
-    Y -- Yes --> Z[Relay replaces older iPhone socket<br/>4003 to old connection]
+    G --> Y{Phone reconnects?}
+    Y -- Yes --> Z[Relay replaces older phone socket<br/>4003 to old connection]
 
     X --> E
     Z --> J
 
     D --> AA{Mac disconnects?}
-    AA -- Yes --> AB[Relay closes iPhone socket(s)<br/>4002 Mac disconnected]
+    AA -- Yes --> AB[Relay closes phone socket(s)<br/>4002 Mac disconnected]
     AB --> AC[Empty session cleaned up after delay]
 
     T --> AD[Later app reopen]
-    AD --> AE[iPhone calls POST /v1/trusted/session/resolve]
+    AD --> AE[Phone calls POST /v1/trusted/session/resolve]
     AE --> AF[Relay verifies trusted-device signature, nonce, and freshness]
     AF --> AG[Relay returns current live sessionId for that Mac]
     AG --> G
@@ -94,7 +96,7 @@ flowchart TD
 - close code `4000`: invalid session or role
 - close code `4001`: previous Mac connection replaced
 - close code `4002`: session unavailable / Mac disconnected
-- close code `4003`: previous iPhone connection replaced
+- close code `4003`: previous phone connection replaced
 
 Optional HTTP endpoints:
 
@@ -104,6 +106,8 @@ Optional HTTP endpoints:
 - `POST /v1/push/session/notify-completion`
 
 The trusted-session resolve endpoint is intended for phones that have already completed the first QR bootstrap. It returns the current live session only after signature, nonce, and freshness checks pass.
+
+The protocol still uses the historical `iphone` WebSocket role name from upstream Remodex for compatibility, even though this repo is Android-focused.
 
 Push is disabled by default. Enable it only when you are ready to wire APNs and the bridge-side `REMODEX_PUSH_SERVICE_URL`, for example with `REMODEX_ENABLE_PUSH_SERVICE=true`.
 
@@ -115,6 +119,8 @@ Push is disabled by default. Enable it only when you are ready to wire APNs and 
 - When `REMODEX_TRUST_PROXY=true`, configure the proxy to send sanitized client IP headers (`X-Real-Ip` and/or appended `X-Forwarded-For`) instead of passing client-supplied values through unchanged.
 - If you expose the relay under a shared-domain prefix such as `/remodex`, have the proxy strip that prefix before forwarding so the Node server still receives `/relay/...` and `/v1/push/...`.
 - The public repo should document the protocol and code, not your real deployed hostname or deploy defaults.
+- The Android fork recommends a stable private network path such as Tailscale for day-to-day use.
+- Public `wss://` deployment appears to be supported by the shared code, but it has not been meaningfully validated by the author of this Android fork.
 
 ## Usage
 

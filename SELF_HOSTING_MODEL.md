@@ -4,6 +4,12 @@ This repository is the self-hostable Android-focused source distribution of Remo
 
 It is designed so you can inspect the transport, build the Android app, run the bridge yourself, and point everything at a relay you control.
 
+The practical recommendation for this Android fork is:
+
+- use local LAN for quick testing
+- use Tailscale or another stable private overlay for normal use
+- treat direct public internet deployment as code-supported in principle, but not meaningfully verified by the author of this Android fork
+
 ## What The Public Repo Includes
 
 - the Android app source
@@ -35,6 +41,8 @@ The first QR scan bootstraps trust. Later reconnects should reuse that trust ove
 2. a self-hosted relay passed through `REMODEX_RELAY`
 
 For step-by-step setup, read [Docs/self-hosting.md](Docs/self-hosting.md).
+
+The shared bridge and relay code are designed to support self-hosted `wss://` relay setups behind your own reverse proxy. That said, this Android fork has mainly been exercised on private-network paths, so public internet deployment should be treated as advanced and unverified rather than the recommended default.
 
 ## Why The Repo Stays Generic
 

@@ -7,6 +7,12 @@ It supports two main flows:
 1. local testing with the included launcher
 2. a self-hosted relay that the bridge connects to explicitly
 
+Recommended usage:
+
+- use local LAN for initial testing
+- use Tailscale or another stable private overlay for normal use
+- treat direct public internet deployment as advanced and currently unverified by the author of this Android fork
+
 ## What Self-Hosting Means Here
 
 - Codex runs on your Mac
@@ -71,6 +77,8 @@ Expected response:
 
 Use this when you want the bridge to connect through a relay you run yourself.
 
+This is the path to use if you want a more stable setup than same-LAN pairing. In practice, the most realistic recommendation for this Android fork is still a private overlay such as Tailscale rather than a general public deployment.
+
 ### What Runs Where
 
 On your relay host:
@@ -105,6 +113,14 @@ curl http://127.0.0.1:9000/health
 
 Expose the relay through your own `wss://` endpoint and forward `/relay/...` traffic to the Node relay process.
 
+The shared bridge and relay code are designed to allow this kind of deployment. The upstream Remodex project documents and supports that model in source form.
+
+What is different here is the validation claim:
+
+- the Android fork author has mainly used private-network setups
+- public internet deployment of this Android fork has not been meaningfully tested end to end
+- so you should treat public `wss://` deployment as code-supported but not author-verified
+
 ### Point The Bridge At Your Relay
 
 Installed bridge:
@@ -129,6 +145,8 @@ Then pair from the Android app with the QR code.
 - keep your real deployment hostnames and credentials out of Git
 - the bridge package/CLI name remains `remodex`
 - macOS remains the primary host-side background-service target
+- Tailscale or another stable private overlay is the recommended day-to-day path
+- direct public internet deployment may work, but it is not the recommended first setup here
 
 ## Troubleshooting
 
