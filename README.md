@@ -135,8 +135,8 @@ Latest alpha: [`v0.0.1-alpha`](https://github.com/lampten/remodex-android/releas
 Notes:
 
 - this is an early personal-use alpha
-- there is no signed installable APK published at the moment
-- if you want to try it today, build from source
+- a debug-keystore-signed APK is attached for early testing
+- if you want full control over signing and setup, build from source
 
 ## Development Notes
 
