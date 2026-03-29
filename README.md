@@ -1,12 +1,12 @@
-# Remodex Android
-
-Control Codex on your own machine from Android. Remodex Android is an Android client for [Remodex](https://github.com/Emanuele-web04/remodex), with compatible bridge and relay updates for a local-first, self-hostable setup.
-
-This project is derived from the upstream Remodex work by Emanuele Di Pietro. The public repository here focuses on the Android client plus the bridge and relay pieces needed to use it from source. It does not include the upstream iOS source tree, but it is intended to stay compatible with the upstream iOS app and protocol where that behavior is documented and preserved in the shared bridge/relay code.
-
 <p align="center">
   <img src="assets/androidremodex-2.png" alt="Remodex Android logo" width="96">
 </p>
+
+# Remodex Android
+
+Control Codex on your device from Android. An Android client for [Remodex](https://github.com/Emanuele-web04/remodex), with compatible bridge and relay updates for a local-first, self-hostable setup.
+
+Derived from the upstream Remodex work by Emanuele Di Pietro. This public repo focuses on the Android client plus the bridge and relay pieces needed to use it from source. It does not include the upstream iOS source tree, but it is intended to stay compatible with the upstream iOS app and protocol where that shared bridge/relay behavior is preserved.
 
 <p align="center">
   <img src="assets/remodex-android-onboard.jpg" alt="Onboarding" width="320">
@@ -33,7 +33,7 @@ Remodex Android is an early but usable self-hostable Android client. The current
 - image send and basic history image handling
 - local-first self-hosting with the included bridge and relay code
 
-This is a 100% vibe-coded personal project. The author started with effectively zero Android development knowledge, built this mainly for personal use, and has only tested it on the author's own Android hardware. Expect rough edges. It also feels likely that Codex itself will eventually ship an official remote experience, so long-term maintenance here may stay very light.
+This is a 100% vibe-coded personal project. The author started with effectively zero Android development knowledge, built this mainly for personal use, and has only tested it on the author's own Android hardware. The host side has been tested on both Raspberry Pi and macOS devices running Codex CLI. Expect rough edges. Codex itself may ship an official remote experience soon, so maintenance here may stay very light.
 
 If this repo is useful to you, the safest assumption is:
 
@@ -44,7 +44,7 @@ If this repo is useful to you, the safest assumption is:
 ## What This Repo Includes
 
 - `app/`: the Android client
-- `phodex-bridge/`: the local bridge that runs next to Codex on your Mac
+- `phodex-bridge/`: the local bridge that runs next to Codex on your device
 - `relay/`: the public relay process used for pairing and trusted reconnect
 - `Docs/`: architecture, self-hosting, project history, and durable decisions
 
@@ -76,8 +76,8 @@ The bridge and relay changes in this repo are still meant to preserve the shared
 
 This repo is meant to be self-hostable and local-first:
 
-- Codex still runs on your own Mac
-- the bridge still runs on your own Mac
+- Codex still runs on your own device
+- the bridge still runs on your own device
 - the relay is only a transport layer
 - the Android app pairs once with a QR code, then reuses trusted reconnect
 
@@ -124,9 +124,8 @@ For the full setup guide, read [Docs/self-hosting.md](Docs/self-hosting.md) and 
 This repository is lightly maintained.
 
 - bug reports are fine
-- small documentation fixes are welcome
-- small focused fixes may be considered
-- large feature PRs, rewrites, or scope expansion are unlikely to be accepted
+- PRs are unlikely to be accepted
+- maintenance will probably only happen when the author needs it personally
 - if you want to move faster, fork it
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening anything non-trivial.

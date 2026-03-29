@@ -15,8 +15,8 @@ Recommended usage:
 
 ## What Self-Hosting Means Here
 
-- Codex runs on your Mac
-- the bridge runs on your Mac
+- Codex runs on your own device
+- the bridge runs on your own device
 - the Android app is the paired client
 - the relay is only a transport layer
 
@@ -28,7 +28,7 @@ This is the easiest way to get started.
 
 ### What You Need
 
-- a Mac with Codex CLI installed
+- a device with Codex CLI installed
 - Android Studio or another way to build/install the Android app
 - an Android device on the same reachable network path
 
@@ -85,7 +85,7 @@ On your relay host:
 
 - the relay
 
-On your Mac:
+On your host device:
 
 - the bridge
 - Codex CLI / app-server
@@ -144,7 +144,7 @@ Then pair from the Android app with the QR code.
 - There is no built-in hosted relay default in this public repo
 - keep your real deployment hostnames and credentials out of Git
 - the bridge package/CLI name remains `remodex`
-- macOS remains the primary host-side background-service target
+- macOS is still the primary host-side background-service target, but basic host-side use is not limited to macOS
 - Tailscale or another stable private overlay is the recommended day-to-day path
 - direct public internet deployment may work, but it is not the recommended first setup here
 
