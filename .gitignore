@@ -1,0 +1,32 @@
+# Node / dependencies
+node_modules/
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Editors
+.idea/
+*.iml
+.vscode/
+
+# Android / Gradle local files
+.gradle/
+.kotlin/
+local.properties
+.cxx/
+captures/
+
+# Build output
+build/
+*/build/
+*.apk
+*.aab
+
+# Secrets / local env
+.env
+.env.*
+*.pem
+*.p12
+*.key
+*.cer
