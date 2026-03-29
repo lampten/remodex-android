@@ -5,19 +5,23 @@ Control Codex on your own machine from Android. Remodex Android is an Android cl
 This project is derived from the upstream Remodex work by Emanuele Di Pietro. The public repository here focuses on the Android client plus the bridge and relay pieces needed to use it from source. It does not include the upstream iOS source tree, but it is intended to stay compatible with the upstream iOS app and protocol where that behavior is documented and preserved in the shared bridge/relay code.
 
 <p align="center">
-  <img src="assets/androidremodex-2.png" alt="Remodex Android logo" width="140">
+  <img src="assets/androidremodex-2.png" alt="Remodex Android logo" width="96">
 </p>
 
-<table>
+<p align="center">
+  <img src="assets/remodex-android-onboard.jpg" alt="Onboarding" width="320">
+</p>
+
+<table align="center">
   <tr>
-    <td width="50%"><img src="assets/remodex-android-chat.jpg" alt="Chat view"></td>
-    <td width="50%"><img src="assets/remodex-android-fold.jpg" alt="Foldable layout"></td>
-  </tr>
-  <tr>
-    <td width="50%"><img src="assets/remodex-android-onboard.jpg" alt="Onboarding"></td>
-    <td width="50%"><img src="assets/remodex-android-settings.jpg" alt="Settings"></td>
+    <td width="50%"><img src="assets/remodex-android-chat.jpg" alt="Chat view" width="260"></td>
+    <td width="50%"><img src="assets/remodex-android-settings.jpg" alt="Settings" width="260"></td>
   </tr>
 </table>
+
+<p align="center">
+  <img src="assets/remodex-android-fold.jpg" alt="Foldable layout" width="560">
+</p>
 
 ## Current Status
 
