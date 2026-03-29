@@ -128,6 +128,16 @@ Then build and install the Android app from `app/`.
 
 For the full setup guide, read [Docs/self-hosting.md](Docs/self-hosting.md) and [SELF_HOSTING_MODEL.md](SELF_HOSTING_MODEL.md).
 
+## Release
+
+Latest alpha: [`v0.0.1-alpha`](https://github.com/lampten/remodex-android/releases/tag/v0.0.1-alpha)
+
+Notes:
+
+- this is an early personal-use alpha
+- there is no signed installable APK published at the moment
+- if you want to try it today, build from source
+
 ## Development Notes
 
 - Android stack: Kotlin + Jetpack Compose + Material 3
